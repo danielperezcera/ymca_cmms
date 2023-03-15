@@ -1,0 +1,48 @@
+.icon {
+  height: 50px;
+  width: 50px;
+}
+
+.infoZone {
+  margin: 0px;
+  padding: 10px;
+}
+
+.maintenance,
+.custodial,
+.other {
+  display: flex;
+  flex-direction: row;
+}
+
+.areaCard {
+  text-align: center;
+  background-color: #fff;
+  height: 280px;
+  width: 200px;
+  position: relative;
+  margin: 10px;
+  padding: 5px 5px 20px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 3px #262626;
+}
+
+section {
+  margin: auto;
+  padding: 3px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+p {
+  margin: 0 0 0 20px;
+  padding: 0;
+  align-self: center;
+  font-size: 2rem;
+  font-weight: 800;
+}

@@ -1,26 +1,43 @@
 import "./AreaCard.css";
 
-export default function AreaCard() {
+export default function AreaCard({ area, maintenance, custodial, other }) {
   return (
     <>
-      <div>
-        <h2>Area</h2>
+      <div className="areaCard">
+        <h2>{area}</h2>
         <div className="infoZone">
-          <div className="maintenance">
-            <img
-              src={require("../../images/2639855_maintenance_icon.png")}
-              alt="maintenance icon"
-            />
-            <p>4</p>
-          </div>
-          <div className="custodial">
-            <img src={require("../../images/custodial.png")} alt="" />
-            <p>3</p>
-          </div>
-          {/* <div className="maintenance">
-            <img src="../../images/three-dots-svgrepo-com.svg" alt="" />
-            <p>2</p>
-          </div> */}
+          <section>
+            <div className="maintenance">
+              <img
+                src={require("../../images/2639855_maintenance_icon.png")}
+                alt="maintenance icon"
+                className="icon"
+              />
+              <p>{maintenance}</p>
+            </div>
+          </section>
+
+          <section>
+            <div className="custodial">
+              <img
+                src={require("../../images/custodial.png")}
+                alt="mop and bucket icon"
+                className="icon"
+              />
+              <p>{custodial}</p>
+            </div>
+          </section>
+
+          <section>
+            <div className="other">
+              <img
+                src={require("../../images/ellipsis.png")}
+                alt="ellipsis/other icon"
+                className="icon"
+              />
+              <p>{other}</p>
+            </div>
+          </section>
         </div>
       </div>
     </>
