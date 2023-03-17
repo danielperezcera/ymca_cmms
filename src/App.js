@@ -1,20 +1,35 @@
 import "./App.css";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Dashboard from "./components/Dashboard/Dashboard";
 import { Branch, areaList } from "./util/areaList";
-import localModelInit from "./util/util";
 // import "./databaseSetup";
 import { Context } from "./contexts/context";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase";
 
 const modelInit = new Branch(areaList);
 
 function App() {
+  //this useState is solely used to trigger re-rendering afte database response
+  const [isLoading, setLoading] = useState(true);
   const Northwest = useContext(Context);
+  const areaRef = collection(db, "tickets");
+
   useEffect(() => {
-    //FIXME: useEffect runs after initial render. Consider creating a separate setup module
-    //initialize local model
-    localModelInit(modelInit);
-    Northwest.setBranch(modelInit);
+    //created function to be able to make it async
+    const getData = async () => {
+      //await for the data received by getDocs, then change state to trigger re-render
+      const data = await getDocs(areaRef).then(setLoading(false));
+
+      //load the response into the local model (Branch class)
+      data.forEach((doc) => {
+        modelInit.areaList[`${doc.data().area}`].addTicket(doc.id, doc.data());
+      });
+
+      //Load the database response into context to properly share
+      Northwest.setBranch(modelInit);
+    };
+    getData();
   }, []);
 
   return <Dashboard />;

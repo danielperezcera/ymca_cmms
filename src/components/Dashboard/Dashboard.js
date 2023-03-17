@@ -3,6 +3,7 @@ import AreaCard from "../AreaCard/AreaCard";
 import "./Dashboard.css";
 import { useContext } from "react";
 import { Context } from "../../contexts/context";
+import { areaList } from "../../util/areaList";
 
 export default function Dashboard() {
   const Northwest = useContext(Context);
@@ -10,17 +11,18 @@ export default function Dashboard() {
   return (
     <>
       <Navbar />
-
       <div className="cardArea">
-        {/* {Northwest.branch.areaList.((area) => {
-          console.log("inside");
-        })} */}
-        <AreaCard
-          area="Women Locker Room"
-          maintenance="4"
-          custodial="3"
-          other="2"
-        ></AreaCard>
+        {areaList.map((area) => {
+          return (
+            <AreaCard
+              key={area}
+              area={area}
+              maintenance={Northwest.branch.areaList[area].maintenanceCount}
+              custodial={Northwest.branch.areaList[area].custodialCount}
+              other={Northwest.branch.areaList[area].otherCount}
+            ></AreaCard>
+          );
+        })}
       </div>
     </>
   );
