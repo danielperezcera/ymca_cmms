@@ -1,3 +1,10 @@
-.Dashboard {
-  padding: 5%;
+.cardArea {
+  margin: 25px 15% 25px;
+  /* padding: 100px; */
+  display: flex;
+  flex-direction: row;
+}
+
+AreaCard {
+  align-self: center;
 }

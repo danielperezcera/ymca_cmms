@@ -1,46 +1,23 @@
-import { useEffect } from "react";
 import "./App.css";
-import { db } from "./firebase.js";
-import { collection, getDocs, get } from "firebase/firestore";
+import { useContext, useEffect } from "react";
 import Dashboard from "./components/Dashboard/Dashboard";
+import { Branch, areaList } from "./util/areaList";
+import localModelInit from "./util/util";
+// import "./databaseSetup";
+import { Context } from "./contexts/context";
 
-const areaRef = collection(db, "tickets");
-
-// const wellnessDocs = await get(areaRef);
-
-// console.log(wellnessDocs.data());
-// console.log("data");
+const modelInit = new Branch(areaList);
 
 function App() {
-  // const firebaseCollectionRef = collection(db, "Areas");
+  const Northwest = useContext(Context);
   useEffect(() => {
-    const getData = async () => {
-      const data = await getDocs(areaRef);
-      data.forEach((doc) => {
-        console.log(doc.id, " ---> ", doc.data());
-      });
-    };
-
-    getData();
+    //FIXME: useEffect runs after initial render. Consider creating a separate setup module
+    //initialize local model
+    localModelInit(modelInit);
+    Northwest.setBranch(modelInit);
   }, []);
 
   return <Dashboard />;
 }
 
 export default App;
-
-// const firebaseCollectionRef = collection(db, "Areas");
-// useEffect(() => {
-//   const getData = async () => {
-//     const data = await getDocs(firebaseCollectionRef);
-//     console.log(data.docs[0].data());
-//   };
-
-//   getData();
-// }, []);
-
-// return (
-//   <>
-//     <h1>TESTING PHASE</h1>
-//   </>
-// );
