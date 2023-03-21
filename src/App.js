@@ -6,6 +6,8 @@ import { Branch, areaList } from "./util/areaList";
 import { Context } from "./contexts/context";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import TicketList from "./components/TicketList/TicketList";
 
 const modelInit = new Branch(areaList);
 
@@ -29,10 +31,17 @@ function App() {
       //Load the database response into context to properly share
       Northwest.setBranch(modelInit);
     };
-    getData();
+    // getData();
   }, []);
 
-  return <Dashboard />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/area/:id" element={<TicketList />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

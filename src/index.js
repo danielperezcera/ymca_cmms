@@ -11,8 +11,6 @@ root.render(
   // <React.StrictMode>
   // </React.StrictMode>
   <BranchContextProvider>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <App />
   </BranchContextProvider>
 );

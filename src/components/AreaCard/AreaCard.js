@@ -1,9 +1,16 @@
 import "./AreaCard.css";
+import { useNavigate, Link } from "react-router-dom";
 
 export default function AreaCard({ area, maintenance, custodial, other }) {
+  const navigate = useNavigate();
+
+  const handleAreaClick = () => {
+    navigate("/area/" + `${area}`);
+  };
+
   return (
     <>
-      <div className="areaCard">
+      <div className="areaCard" onClick={handleAreaClick}>
         <h2>{area}</h2>
         <div className="infoZone">
           <section>

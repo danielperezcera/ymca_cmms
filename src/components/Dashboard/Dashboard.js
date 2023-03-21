@@ -24,6 +24,7 @@ export default function Dashboard() {
           );
         })}
       </div>
+      <div className="addBtn">NEW TICKET</div>
     </>
   );
 }

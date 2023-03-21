@@ -10,3 +10,25 @@
 AreaCard {
   align-self: center;
 }
+
+.addBtn {
+  position: fixed;
+  bottom: 50px;
+  right: 30px;
+  height: 15vh;
+  width: 15vh;
+  border: solid 10px #9fffa7;
+  border-radius: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 3vh;
+  font-weight: 700;
+  color: #355f39;
+}
+
+.addBtn:hover {
+  background-color: #9fffa7;
+  box-shadow: 0px 0px 24px 1px;
+}
