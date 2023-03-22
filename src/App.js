@@ -8,6 +8,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import TicketList from "./components/TicketList/TicketList";
+import TicketInfo from "./components/Forms/TicketInfo";
 
 const modelInit = new Branch(areaList);
 
@@ -39,6 +40,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/area/:id" element={<TicketList />} />
+        <Route path="/addTicket" element={<TicketInfo />} />
       </Routes>
     </BrowserRouter>
   );

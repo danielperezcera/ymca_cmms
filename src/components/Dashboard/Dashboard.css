@@ -31,4 +31,5 @@ AreaCard {
 .addBtn:hover {
   background-color: #9fffa7;
   box-shadow: 0px 0px 24px 1px;
+  scale: 1.05;
 }

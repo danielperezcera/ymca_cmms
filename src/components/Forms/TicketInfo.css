@@ -1,0 +1,45 @@
+.formArea {
+  font-size: 1.8rem;
+  text-align: center;
+  background-color: #d4e3e6;
+  min-height: 600px;
+  width: 600px;
+  position: relative;
+  margin: 10px;
+  padding: 5px 5px 20px;
+  margin: auto;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 3px #262626;
+  padding: 50px;
+}
+
+.formArea h2 {
+  font-size: 2rem;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.formArea form label {
+  text-align: left;
+  display: block;
+}
+
+.formArea form input,
+.formArea form textarea,
+.formArea form select {
+  font-size: 1.4rem;
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
+
+.formArea form button {
+  margin: 50px 10px 20px;
+  font-size: 1.4rem;
+  width: 200px;
+  height: 80px;
+  border-radius: 10px;
+}
