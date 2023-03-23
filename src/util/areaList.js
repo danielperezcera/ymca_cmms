@@ -4,6 +4,11 @@ export const areaList = [
   "Family Locker Room",
   "Wellness Center",
   "Front Men Bathroom",
+  "Front Women Bathroom",
+  "Gulick Gym",
+  "Gymnasium",
+  "Warm Water Pool",
+  "Lap Pool",
 ];
 
 const type = {

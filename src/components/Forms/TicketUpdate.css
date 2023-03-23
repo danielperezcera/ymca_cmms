@@ -62,7 +62,26 @@
 .formArea1 form button {
   margin: 50px 10px 20px;
   font-size: 1.4rem;
-  width: 200px;
+  width: 150px;
   height: 80px;
   border-radius: 10px;
+  background-color: rgb(63, 165, 205);
+  border-color: rgb(63, 165, 205);
+}
+.formArea1 form button:hover {
+  scale: 1.02;
+}
+
+#deleteBtn {
+  margin: 50px 10px 20px;
+  font-size: 1.4rem;
+  width: 150px;
+  height: 80px;
+  border-radius: 10px;
+  border-color: rgb(219, 76, 76);
+  background-color: rgb(219, 76, 76);
+}
+
+.confirmation {
+  margin-top: 50px;
 }

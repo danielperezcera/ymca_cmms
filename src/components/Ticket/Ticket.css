@@ -14,6 +14,10 @@
   box-shadow: 1px 1px 5px 3px #262626;
 }
 
+.ticket:hover {
+  scale: 1.02;
+}
+
 h3 {
   display: inline-block;
   font-size: 2rem;

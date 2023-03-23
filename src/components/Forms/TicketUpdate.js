@@ -1,7 +1,7 @@
 import "./TicketUpdate.css";
 import { areaList } from "../../util/areaList";
 import ReactDom from "react-dom";
-import { collection, doc, updateDoc } from "firebase/firestore";
+import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useState } from "react";
 
@@ -13,6 +13,8 @@ export default function TicketUpdate({ open, onClose, ticket }) {
   const [assign, setAssign] = useState(ticket.assign ? ticket.assign : "");
   const [status, setStatus] = useState(ticket.status ? ticket.status : "");
   const [notes, setNotes] = useState(ticket.notes ? ticket.notes : "");
+
+  const [isSure, setIsSure] = useState(false);
 
   if (!open) return null;
 
@@ -41,6 +43,21 @@ export default function TicketUpdate({ open, onClose, ticket }) {
 
   const handleCancel = () => {
     onClose();
+  };
+
+  const handleCancelDelete = () => {
+    setIsSure(false);
+  };
+  const handleDelete = async () => {
+    const ticketRef = doc(db, "tickets", ticket.id);
+
+    await deleteDoc(ticketRef);
+
+    onClose();
+  };
+
+  const handleConfirm = () => {
+    setIsSure(true);
   };
 
   return ReactDom.createPortal(
@@ -140,11 +157,31 @@ export default function TicketUpdate({ open, onClose, ticket }) {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
             ></textarea>
-
-            <button type="submit">SAVE</button>
-            <button type="button" onClick={handleCancel}>
-              Cancel
-            </button>
+            {!isSure ? (
+              <>
+                <button type="button" id="deleteBtn" onClick={handleConfirm}>
+                  <b>Delete</b>
+                </button>
+                <button type="button" onClick={handleCancel}>
+                  <b>Cancel</b>
+                </button>
+                <button type="submit">
+                  <b>Save</b>
+                </button>
+              </>
+            ) : null}
+            {isSure ? (
+              <div className="confirmation">
+                <p>This action is irreversible.</p>
+                <p>Are you sure you want to delete?</p>
+                <button type="button" id="deleteBtn" onClick={handleDelete}>
+                  <b>Delete</b>
+                </button>
+                <button type="button" onClick={handleCancelDelete}>
+                  <b>Cancel</b>
+                </button>
+              </div>
+            ) : null}
           </form>
         </div>
       </div>
