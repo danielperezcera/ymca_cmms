@@ -32,7 +32,7 @@ function App() {
       //Load the database response into context to properly share
       Northwest.setBranch(modelInit);
     };
-    // getData();
+    getData();
   }, []);
 
   return (

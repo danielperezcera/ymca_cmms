@@ -1,14 +1,21 @@
-.formArea {
+.center1 {
+  display: flex;
+  justify-content: center;
+}
+.formArea1 {
+  /* justify-self: top;
+  align-self: center; */
   font-size: 1.8rem;
   text-align: center;
   background-color: #d4e3e6;
   min-height: 600px;
   width: 600px;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  margin: 10px;
+  top: 10px;
+  /* left: 50%; */
+  /* top: 50%; */
+  /* transform: translate(-50%, -50%); */
+  /* margin: 10px; */
   padding: 5px 5px 20px;
   margin: auto;
   border-radius: 10px;
@@ -16,7 +23,8 @@
   padding: 50px;
   z-index: 1000;
 }
-.overlay {
+.overlay1 {
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
@@ -28,20 +36,20 @@
   z-index: 1000;
 }
 
-.formArea h2 {
+.formArea1 h2 {
   font-size: 2rem;
   margin: 0 0 20px 0;
   padding: 0;
 }
 
-.formArea form label {
+.formArea1 form label {
   text-align: left;
   display: block;
 }
 
-.formArea form input,
-.formArea form textarea,
-.formArea form select {
+.formArea1 form input,
+.formArea1 form textarea,
+.formArea1 form select {
   font-size: 1.4rem;
   width: 100%;
   padding: 6px 10px;
@@ -51,7 +59,7 @@
   display: block;
 }
 
-.formArea form button {
+.formArea1 form button {
   margin: 50px 10px 20px;
   font-size: 1.4rem;
   width: 200px;
