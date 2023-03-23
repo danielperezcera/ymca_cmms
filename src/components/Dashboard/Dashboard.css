@@ -24,9 +24,11 @@ AreaCard {
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 3vh;
+  font-size: 28px;
   font-weight: 700;
   color: #355f39;
+  max-width: 155px;
+  max-height: 155px;
 }
 
 .addBtn:hover {

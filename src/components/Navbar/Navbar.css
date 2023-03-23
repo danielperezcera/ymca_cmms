@@ -22,3 +22,43 @@
   color: #cad2c5;
   font-size: 2rem;
 }
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  background-color: #446070;
+  padding: 0;
+  margin: 10px;
+  border-radius: 30px;
+}
+/* Style the list */
+ul.breadcrumb {
+  padding: 0;
+  list-style: none;
+  /* background-color: #eee; */
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 25px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li + li:before {
+  padding: 8px;
+  color: #cad2c5;
+  content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #cad2c5;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #f3cf05;
+  text-decoration: underline;
+}

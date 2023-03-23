@@ -1,34 +1,42 @@
 import "./TicketUpdate.css";
 import { areaList } from "../../util/areaList";
 import ReactDom from "react-dom";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
-
-const collectionRef = collection(db, "tickets");
+import { useState } from "react";
 
 export default function TicketUpdate({ open, onClose, ticket }) {
+  const [area, setArea] = useState(ticket.area);
+  const [type, setType] = useState(ticket.type);
+  const [description, setDescription] = useState(ticket.description);
+  const [contact, setContact] = useState(ticket.contact);
+  const [assign, setAssign] = useState(ticket.assign ? ticket.assign : "");
+  const [status, setStatus] = useState(ticket.status ? ticket.status : "");
+  const [notes, setNotes] = useState(ticket.notes ? ticket.notes : "");
+
   if (!open) return null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      // e.target.area.value,
-      // e.target.type.value,
-      // e.target.description.value,
-      // e.target.contact.value
-      e.target.value
-    );
-
+    // console.log(
+    //   ticket.id,
+    //   // e.target.area.value,
+    //   // e.target.type.value,
+    //   // e.target.description.value,
+    //   // e.target.contact.value
+    //   e.target.notes.value
+    // );
+    const ticketRef = doc(db, "tickets", ticket.id);
     // const timeStamp = new Date();
 
-    // await addDoc(collectionRef, {
-    //   area: e.target.area.value,
-    //   contact: e.target.contact.value,
-    //   description: e.target.description.value,
-    //   location: "Northwest Branch",
-    //   type: e.target.type.value,
-    //   submitted: timeStamp,
-    // }).then(onClose());
+    await updateDoc(ticketRef, {
+      contact: e.target.contact.value,
+      description: e.target.description.value,
+      type: e.target.type.value,
+      assign: e.target.assign.value,
+      status: e.target.status.value,
+      notes: e.target.notes.value,
+    }).then(onClose());
   };
 
   const handleCancel = () => {
@@ -40,17 +48,13 @@ export default function TicketUpdate({ open, onClose, ticket }) {
       <div className="overlay1" />
       <div className="center1">
         <div className="formArea1">
-          <h2>Add New Ticket</h2>
+          <h2>Update Ticket</h2>
           <form onSubmit={handleSubmit}>
             <label htmlFor="area">Area:</label>
-            <select name="area" id="area">
-              {areaList.map((area) => {
-                return (
-                  <option key={area} value={area}>
-                    {area}
-                  </option>
-                );
-              })}
+            <select name="area" id="area" disabled>
+              <option key={area} value={area} defaultValue readOnly>
+                {area}
+              </option>
             </select>
             {/* <input
           type="text"
@@ -61,10 +65,14 @@ export default function TicketUpdate({ open, onClose, ticket }) {
         /> */}
 
             <label htmlFor="type">Type:</label>
-            <select name="type" id="type">
+            <select
+              name="type"
+              id="type"
+              onChange={(e) => setType(e.target.value)}
+            >
               {
-                <option value={ticket.type} selected>
-                  {ticket.type}
+                <option value={type} defaultValue>
+                  {type}
                 </option>
               }
               <option value="Custodial">Custodial</option>
@@ -79,7 +87,8 @@ export default function TicketUpdate({ open, onClose, ticket }) {
               cols="30"
               rows="5"
               required
-              value={ticket.description}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
 
             <label htmlFor="contact">Contact:</label>
@@ -90,7 +99,8 @@ export default function TicketUpdate({ open, onClose, ticket }) {
               name="contact"
               placeholder="Who is reporting the issue?"
               autoComplete="off"
-              value={ticket.contact}
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
             />
 
             <label htmlFor="assign">Assign to:</label>
@@ -101,14 +111,19 @@ export default function TicketUpdate({ open, onClose, ticket }) {
               name="assign"
               placeholder="Who should complete the task?"
               autoComplete="off"
-              value={ticket.assign}
+              value={assign}
+              onChange={(e) => setAssign(e.target.value)}
             />
 
             <label htmlFor="status">Status:</label>
-            <select name="status" id="status">
+            <select
+              name="status"
+              id="status"
+              onChange={(e) => setStatus(e.target.value)}
+            >
               {
-                <option value={ticket.status} selected>
-                  {ticket.status}
+                <option value={status} defaultValue>
+                  {status}
                 </option>
               }
               <option value="In-Progress">In-Progress</option>
@@ -122,7 +137,8 @@ export default function TicketUpdate({ open, onClose, ticket }) {
               id="notes"
               cols="30"
               rows="5"
-              value={ticket.notes}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
             ></textarea>
 
             <button type="submit">SAVE</button>

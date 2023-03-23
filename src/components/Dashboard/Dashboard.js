@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { Context } from "../../contexts/context";
 import { areaList, Branch } from "../../util/areaList";
 import TicketInfo from "../Forms/TicketInfo";
-import { updateData } from "../../util/util";
+
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
 
